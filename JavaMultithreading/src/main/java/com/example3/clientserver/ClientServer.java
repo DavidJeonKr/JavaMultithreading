@@ -1,6 +1,5 @@
 package com.example3.clientserver;
 
-import com.nio.Server;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -27,7 +26,7 @@ public class ClientServer {
         this.port = port;
     }
     // connect 연결
-    public void connect() {
+    public void connect() throws InterruptedException{
         try {
         eventLoopGroup = new NioEventLoopGroup(1, new DefaultThreadFactory("client")); // 스레드의 갯수, 이름 설정
 
@@ -51,9 +50,10 @@ public class ClientServer {
         // future를 사용하는 방법?? 알아보기 하는 역할 등등
         serverChannel = bootstrap.connect().sync().channel();
 
-        } catch (Exception e ) {
-            e.printStackTrace();
+        } finally {
+            
         }
+
 
     }
 
